@@ -1,0 +1,39 @@
+#!/usr/bin/env php
+
+<?php
+/**
+ * @var array $trademarks
+ */
+if(count($argv) > 1):
+    $command = explode(":", $argv[1]);
+    switch ($command[0]){
+        case "name":
+            $name = $command[1];
+            print_r($name);
+            echo implode("\r\n", [
+                "Please wait ...",
+                "Searching " . $name . " in world of search.ipaustralia.gov.au"
+            ]);
+            require_once "index.php";
+
+            $results = [];
+            foreach ($trademarks as $trademark)
+                if($trademark["name"] == $name)
+                    $results[] = $trademark;
+
+            echo json_encode($results, JSON_PRETTY_PRINT);
+
+            break;
+        default:
+            echo implode("\r\n", [
+                "Invalid command entered for ipaustralia",
+                "Try some thing like this: php ipaustralia name:Tesla"
+            ]);
+    }
+else:
+?>
+    php ipaustralia <COMMANDS>
+    COMMANDS:
+    - name:"WORD BIRD": where Tesla is the name of trademark
+<?php
+endif;
