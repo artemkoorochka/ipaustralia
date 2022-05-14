@@ -3,6 +3,7 @@
 <?php
 /**
  * @var array $trademarks
+ * @var string $trademarksCount
  */
 if(count($argv) > 1):
     $command = explode(":", $argv[1]);
@@ -14,7 +15,8 @@ if(count($argv) > 1):
                 "Please wait ...",
                 "Searching " . $name . " in world of search.ipaustralia.gov.au"
             ]);
-            require_once "index.php";
+            echo "\r\n";
+            require_once "read_pages.php";
 
             $results = [];
             foreach ($trademarks as $trademark)
@@ -22,7 +24,7 @@ if(count($argv) > 1):
                     $results[] = $trademark;
 
             echo json_encode($results, JSON_PRETTY_PRINT);
-
+            print_r( "Total: " . $trademarksCount . "\r\n");
             break;
         default:
             echo implode("\r\n", [
