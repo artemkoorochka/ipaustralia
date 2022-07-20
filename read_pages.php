@@ -11,7 +11,7 @@ $trademarks = [];
 $trademarksCount = 0;
 
 while (true){
-    $ipaustralia = new Cipaustralia('https://search.ipaustralia.gov.au/trademarks/search/result?s=7a312c4c-1603-4844-95d6-7c22cca884ec&p=' . $page, new PhpQuery);
+    $ipaustralia = new Cipaustralia('https://search.ipaustralia.gov.au/trademarks/search/result?s=3bb39d82-f5c4-4766-9549-91c4456ad587&p=' . $page, new PhpQuery);
     $ipaustralia->setTrademarks('#resultsTable tbody tr');
 
     $trademarks = array_merge($ipaustralia->getTrademarksArray(), $trademarks);

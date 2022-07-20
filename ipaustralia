@@ -26,6 +26,23 @@ if(count($argv) > 1):
             echo json_encode($results, JSON_PRETTY_PRINT);
             print_r( "Total: " . $trademarksCount . "\r\n");
             break;
+        case "get":
+            $name = $command[1];
+            print_r($name);
+            echo implode("\r\n", [
+                "Please wait ...",
+                "Searching " . $name . " in world of search.ipaustralia.gov.au"
+            ]);
+            echo "\r\n";
+            require_once "read_pages.php";
+
+            $results = $trademarks;
+
+
+            echo json_encode($results, JSON_PRETTY_PRINT);
+            print_r( "Total: " . $trademarksCount . "\r\n");
+            break;
+            break;
         default:
             echo implode("\r\n", [
                 "Invalid command entered for ipaustralia",
@@ -37,5 +54,6 @@ else:
     php ipaustralia <COMMANDS>
     COMMANDS:
     - name:"WORD BIRD": where Tesla is the name of trademark
+    - get:all: output all trademarks in world
 <?php
 endif;
